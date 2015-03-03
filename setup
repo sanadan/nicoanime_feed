@@ -1,0 +1,8 @@
+#!/bin/sh
+bundle install
+sudo ln -s /var/www/nicoanime_feed/nicoanime_feed.cron /etc/cron.hourly
+sudo ln -s /var/www/nicoanime_feed/nicoanime_feed.conf /etc/apache2/conf-enabled
+sudo service apache2 restart
+echo '初期データ生成...'
+./nicoanime_feed.cron
+
