@@ -3,8 +3,7 @@
 
 #require 'rubygems'
 require 'rss'
-require 'bundler/setup'
-Bundler.require
+require 'mechanize'
 
 $title = 'ニコFeed アニメ - ニコニコチャンネル'
 $uri = 'http://ch.nicovideo.jp/search_video/%E3%82%A2%E3%83%8B%E3%83%A1?mode=t&page=1&sort=f&order=d'
