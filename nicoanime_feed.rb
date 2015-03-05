@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
-# coding: utf-8 　
 
-#require 'rubygems'
 require 'rss'
 require 'mechanize'
 
-$title = 'ニコFeed アニメ - ニコニコチャンネル'
+$title = 'アニメ - ニコニコチャンネル'
 $uri = 'http://ch.nicovideo.jp/search_video/%E3%82%A2%E3%83%8B%E3%83%A1?mode=t&page=1&sort=f&order=d'
-$about = ENV['REQUEST_SCHEME'].to_s + '://' + ENV['HTTP_HOST'].to_s + ENV['REQUEST_URI'].to_s
-$description = 'ニコニコ動画の検索結果をFeedにします'
+# cronではリクエストuriが取れなくなったので、参照先uriにした
+#$about = ENV['REQUEST_SCHEME'].to_s + '://' + ENV['HTTP_HOST'].to_s + ENV['REQUEST_URI'].to_s
+$about = $uri
+$description = 'ニコニコチャンネルのアニメの新着をFeedにします。'
 $author = 'sanadan'
 
 def main
@@ -30,7 +30,7 @@ def main
     info_uri = id.sub( /watch/, 'http://www.nicovideo.jp/api/getthumbinfo' )
     info_html = web.get( info_uri )
     info = Nokogiri.XML( info_html.body )
-    next if info.at( 'nicovideo_thumb_response' )[ 'status' ] != 'ok' # 削除されている
+    next if info.at( 'nicovideo_thumb_response' )[ 'status' ] != 'ok' # 削除されているなら次へ
 #p info.at( 'title' )
 
     data = {}
