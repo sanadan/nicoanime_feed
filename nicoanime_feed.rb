@@ -37,6 +37,7 @@ def main
     data[ 'id' ] = id[ 6 .. -1 ]
     data[ 'title' ] = CGI.unescapeHTML( info.at( 'title' ).inner_text )
 #p data[ 'title' ]
+    data[ 'link' ] = 'http://www.nicovideo.jp/watch/' + data[ 'id' ]
     date = info.at( 'first_retrieve' ).inner_text
     data[ 'date' ] = Time.parse( date )
 #p data[ 'date' ]
@@ -93,6 +94,7 @@ feed = RSS::Maker.make( 'atom' ) do |maker|
     item = maker.items.new_item
     item.id = data[ 'id' ]
     item.title = data[ 'title' ]
+    item.link = data[ 'link' ] if data[ 'link' ]
     item.content.content = data[ 'content' ]
     item.content.type = 'html'
     item.date = data[ 'date' ]
