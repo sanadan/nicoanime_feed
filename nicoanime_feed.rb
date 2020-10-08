@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require 'rss'
 require 'mechanize'
 
@@ -101,5 +103,5 @@ feed = RSS::Maker.make( 'atom' ) do |maker|
   end
 end
 
-File.write( '/var/www/nicoanime_feed/html/feed.xml', feed )
+File.write(File.join(__dir__, 'html/feed.xml'), feed)
 

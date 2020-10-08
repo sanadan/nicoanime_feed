@@ -1,4 +1,8 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "mechanize"
+source 'https://rubygems.org'
+
+gem 'mechanize'
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
 
