@@ -19,7 +19,7 @@ def main
 
   # 動画ID抽出
   id_list = []
-  page.body.scan( /watch\/\d+/ ) do |id|
+  page.body.scan(/watch\/[a-z][a-z]\d+/) do |id|
     id_list << id
   end
   id_list.uniq!
